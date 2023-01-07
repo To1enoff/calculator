@@ -1,6 +1,6 @@
 const res = document.getElementById('res');
-const leftB = document.getElementById("leftbracket");
-const rigthB = document.getElementById('rigthbracket');
+const percentage = document.getElementById("percentage");
+const sqrt = document.getElementById('sqrt');
 const Clr = document.getElementById('Clr');
 const del = document.getElementById('delete');
 const zero = document.getElementById('zero');
@@ -113,13 +113,14 @@ dot.addEventListener('click', function(){
 
 
 //operation buttons
-leftB.addEventListener('click', function(){
-    res.innerText = res.innerText + '(';
-});
 
-rigthB.addEventListener('click', function(){
-    res.innerText = res.innerText + ')';
-});
+// leftB.addEventListener('click', function(){
+//     res.innerText = res.innerText + '(';
+// });
+
+// rigthB.addEventListener('click', function(){
+//     res.innerText = res.innerText + ')';
+// });
 
 Clr.addEventListener('click', function(){
     res.innerText = 0;
@@ -139,30 +140,34 @@ del.addEventListener('click', function(){
 eql.addEventListener('click', function(){
     switch (isCalculating){
         case 1:
-            ans = num1 * parseInt(num2);
+            ans = num1 * parseFloat(num2);
             break;
         case 2:
-            ans = num1 - parseInt(num2);
+            ans = parseFloat(num1) + parseFloat(num2);
             break;
         case 3:
-            ans = num1 / parseInt(num2);
+            ans = num1 / parseFloat(num2);
             break;
         case 4:
-            ans = num1 - parseInt(num2);
+            ans = num1 - parseFloat(num2);
         default:
             break;
     }
+    console.log(num1);
+    console.log(num2);
+    console.log(ans);
     res.innerText = ans;
     ans = 0;
     num1 = 0;
     num2 = '';
     isCalculating = 0;
+    
 });
 
 
 // math operation buttons
 mult.addEventListener('click', function(){
-    if(ans === 0)
+    if(isCalculating === 0)
         num1 = res.innerText;
     else{
         ans = num1 * num2;
@@ -175,12 +180,12 @@ mult.addEventListener('click', function(){
 });
 
 sum.addEventListener('click', function(){
-    if(ans === 0){
-        num1Editing(num1);
+    if(isCalculating === 0){
+        // num1Editing(num1);
         num1 = res.innerText;
     }
     else{
-        ans = num1 + num2;
+        ans = parseFloat(num1) + parseFloat(num2);
         num1 = ans;
         num2 = '';
     }
@@ -193,8 +198,8 @@ sum.addEventListener('click', function(){
 });
 
 div.addEventListener('click', function(){
-    if(ans === 0){
-        num1Editing();
+    if(isCalculating === 0){
+        // num1Editing();
         num1 = res.innerText;
     }
     else{
@@ -211,10 +216,10 @@ div.addEventListener('click', function(){
 });
 
 sub.addEventListener('click', function(){
-    if(ans === 0)
+    if(isCalculating === 0)
         num1 = res.innerText;
     else{
-        ans = num1 - num2;
+        ans = num1 - parseFloat(num2);
         num1 = ans;
         num2 = '';
     }
@@ -223,6 +228,16 @@ sub.addEventListener('click', function(){
     isCalculating = 4;
 });
 
+sqrt.addEventListener('click',function(){
+    if(isCalculating === 0)
+        num1 = res.innerText;
+    else{
+        ans = num1 - parseFloat(num2);
+        num1 = ans;
+        num2 = '';
+    }
+})
+
 function isLastOperation(){
     let lastChar = res.innerText.substring(res.innerText.length - 1, res.innerText.length);
     if(lastChar == '+' || lastChar == '*' || lastChar == ' /' || lastChar == '-'){
@@ -230,12 +245,12 @@ function isLastOperation(){
     }
 }
 
-function num1Editing(s){
-    let lastChar = s.substring(s.length - 1, s.length);
-    if(lastChar == '+' || lastChar == '*' || lastChar == ' /' || lastChar == '-'){
-        num1 = s.substring(0, num1.length - 1);    
-    }
-}
+// function num1Editing(s){
+//     let lastChar = s.substring(s.length - 1, s.length);
+//     if(lastChar == '+' || lastChar == '*' || lastChar == ' /' || lastChar == '-'){
+//         num1 = s.substring(0, num1.length - 1);    
+//     }
+// }
 
 
 
