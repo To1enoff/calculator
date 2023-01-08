@@ -23,86 +23,138 @@ let num1 = 0;
 let num2 = '';
 let ans = 0;
 let isCalculating = 0;
+let isPercentage = false;
+
 //number buttons
 zero.addEventListener('click', function(){
     if(res.innerText === '0')
-     res.innerText = 0;
+        res.innerText = 0;
+    else if(isCalculating === 5)
+    {
+        let sz = res.innerText.length - 1;
+        res.innerText = [res.innerText.slice(0,sz), '0', res.innerText.slice(sz)].join('');
+    }
     else
     res.innerText = res.innerText + 0;
     if(isCalculating === true)
-        num2 += 0;
+        num2 += '0';
 });
 one.addEventListener('click', function(){
     if(res.innerText === '0')
-     res.innerText = 1;
+        res.innerText = 1;
+    else if(isCalculating === 5)
+    {
+        let sz = res.innerText.length - 1;
+        res.innerText = [res.innerText.slice(0,sz), '1', res.innerText.slice(sz)].join('');
+    }
     else
     res.innerText = res.innerText + 1;
     if(isCalculating != 0)
-        num2 += 0;
+        num2 += '1';
 });
 two.addEventListener('click', function(){
     if(res.innerText === '0')
-     res.innerText = 2;
+        res.innerText = 2;
+    else if(isCalculating === 5)
+    {
+        let sz = res.innerText.length - 1;
+        res.innerText = [res.innerText.slice(0,sz), '2', res.innerText.slice(sz)].join('');
+    }
     else
     res.innerText = res.innerText + 2;
     if(isCalculating != 0)
-        num2 += 2;
+        num2 += '2';
 });
 three.addEventListener('click', function(){
     if(res.innerText === '0')
-     res.innerText = 3;
+         res.innerText = 3;
+    else if(isCalculating === 5)
+    {
+        let sz = res.innerText.length - 1;
+        res.innerText = [res.innerText.slice(0,sz), '3', res.innerText.slice(sz)].join('');
+    }
     else
     res.innerText = res.innerText + 3;
     if(isCalculating != 0)
-        num2 += 3;
+        num2 += '3';
 });
 four.addEventListener('click', function(){
     if(res.innerText === '0')
-     res.innerText = 4;
+         res.innerText = 4;
+    else if(isCalculating === 5)
+    {
+        let sz = res.innerText.length - 1;
+        res.innerText = [res.innerText.slice(0,sz), '4', res.innerText.slice(sz)].join('');
+    }
     else
     res.innerText = res.innerText + 4;
     if(isCalculating != 0)
-        num2 += 4;
+        num2 += '4';
 });
 five.addEventListener('click', function(){
     if(res.innerText === '0')
-     res.innerText = 5;
+        res.innerText = 5;
+    else if(isCalculating === 5)
+    {
+        let sz = res.innerText.length - 1;
+        res.innerText = [res.innerText.slice(0,sz), '5', res.innerText.slice(sz)].join('');
+    }
     else
     res.innerText = res.innerText + 5;
     if(isCalculating != 0)
-        num2 += 5;
+        num2 += '5';
 });
 six.addEventListener('click', function(){
     if(res.innerText === '0')
-     res.innerText = 6;
+        res.innerText = 6;
+    else if(isCalculating === 5)
+    {
+        let sz = res.innerText.length - 1;
+        res.innerText = [res.innerText.slice(0,sz), '6', res.innerText.slice(sz)].join('');
+    }
     else
     res.innerText = res.innerText + 6;
     if(isCalculating != 0)
-        num2 += 6;
+        num2 += '6';
 });
 seven.addEventListener('click', function(){
     if(res.innerText === '0')
-     res.innerText = 7;
+        res.innerText = 7;
+    else if(isCalculating === 5)
+    {
+        let sz = res.innerText.length - 1;
+        res.innerText = [res.innerText.slice(0,sz), '7', res.innerText.slice(sz)].join('');
+    }
     else
     res.innerText = res.innerText + 7;
     if(isCalculating != 0)
-        num2 += 7;
+        num2 += '7';
 });
 eigth.addEventListener('click', function(){
     if(res.innerText === '0')
-     res.innerText = 8;
+        res.innerText = 8;
+    else if(isCalculating === 5)
+    {
+        let sz = res.innerText.length - 1;
+        res.innerText = [res.innerText.slice(0,sz), '8', res.innerText.slice(sz)].join('');
+    }
     else
     res.innerText = res.innerText + 8;
     if(isCalculating != 0)
-        num2 += 8;
+        num2 += '8';
 });
 nine.addEventListener('click', function(){
     if(res.innerText === '0')
-     res.innerText = 9;
+        res.innerText = 9;
+    else if(isCalculating === 5)
+    {
+        let sz = res.innerText.length - 1;
+        res.innerText = [res.innerText.slice(0,sz), '9', res.innerText.slice(sz)].join('');
+    }
     else
     res.innerText = res.innerText + 9;
     if(isCalculating != 0)
-        num2 += 9;
+        num2 += '9';
 });
 
 dot.addEventListener('click', function(){
@@ -125,8 +177,9 @@ dot.addEventListener('click', function(){
 Clr.addEventListener('click', function(){
     res.innerText = 0;
     isCalculating = 0;
+    isPercentage = false;
     ans = 0;
-    num1 = 0;
+    num1 = '';  
     num2 = 0;
 });
 
@@ -140,7 +193,7 @@ del.addEventListener('click', function(){
 eql.addEventListener('click', function(){
     switch (isCalculating){
         case 1:
-            ans = num1 * parseFloat(num2);
+            ans = parseFloat(num1) * parseFloat(num2);
             break;
         case 2:
             ans = parseFloat(num1) + parseFloat(num2);
@@ -150,26 +203,34 @@ eql.addEventListener('click', function(){
             break;
         case 4:
             ans = num1 - parseFloat(num2);
+        case 5:
+            ans = Math.sqrt(parseInt(num2));
         default:
             break;
     }
-    console.log(num1);
-    console.log(num2);
-    console.log(ans);
-    res.innerText = ans;
+    if(isCalculating === 0 && isPercentage == true)
+        ans = num1;
+    let isFloat = 0;
+    if(Number.isInteger(ans) == false)
+        isFloat = ans.toString().split('.')[1].length;
+    if(Number.isInteger(ans) == false && isFloat >= 4)
+
+        res.innerText = ans.toFixed(4);
+    else
+        res.innerText = ans;
     ans = 0;
     num1 = 0;
     num2 = '';
     isCalculating = 0;
-    
+    isPercentage = false;
 });
 
 
 // math operation buttons
 mult.addEventListener('click', function(){
-    if(isCalculating === 0)
+    if(isCalculating === 0 && isPercentage == false)
         num1 = res.innerText;
-    else{
+    if(isCalculating != 0){
         ans = num1 * num2;
         num1 = ans;
         num2 = '';
@@ -180,8 +241,7 @@ mult.addEventListener('click', function(){
 });
 
 sum.addEventListener('click', function(){
-    if(isCalculating === 0){
-        // num1Editing(num1);
+    if(isCalculating === 0 && isPercentage == false){
         num1 = res.innerText;
     }
     else{
@@ -192,17 +252,14 @@ sum.addEventListener('click', function(){
     isLastOperation();
     res.innerText += '+';
     isCalculating = 2;
-    console.log(typeof(num1));
-    console.log(num2);
-    console.log(ans);
 });
 
 div.addEventListener('click', function(){
-    if(isCalculating === 0){
+    if(isCalculating === 0 && isPercentage == false){
         // num1Editing();
         num1 = res.innerText;
     }
-    else{
+    if(isCalculating != 0){
         ans = num1 / num2;
         num1 = ans;
         num2 = '';
@@ -210,13 +267,10 @@ div.addEventListener('click', function(){
     isLastOperation();
     res.innerText += '/';
     isCalculating = 3;
-    console.log(num1);
-    console.log(num2);
-    console.log(ans);
 });
 
 sub.addEventListener('click', function(){
-    if(isCalculating === 0)
+    if(isCalculating === 0 && isPercentage == false)
         num1 = res.innerText;
     else{
         ans = num1 - parseFloat(num2);
@@ -229,14 +283,17 @@ sub.addEventListener('click', function(){
 });
 
 sqrt.addEventListener('click',function(){
-    if(isCalculating === 0)
-        num1 = res.innerText;
-    else{
-        ans = num1 - parseFloat(num2);
-        num1 = ans;
-        num2 = '';
-    }
-})
+    if(res.innerText == '0')
+        res.innerText = 'sqrt()';
+    
+    isCalculating = 5;
+});
+
+percentage.addEventListener('click', function(){
+    isPercentage = true;
+    num1 = res.innerText / 100;
+    res.innerText += '%';
+});
 
 function isLastOperation(){
     let lastChar = res.innerText.substring(res.innerText.length - 1, res.innerText.length);
@@ -253,10 +310,6 @@ function isLastOperation(){
 // }
 
 
-
-document.addEventListener('Digit0', function(event){
-  res.innerText += event.key;
-});
 
 // function checkPhoneKey(key) {
 //     return (key >= '0' && key <= '9') || key == '+' || key == '(' || key == ')' || key == '-';
