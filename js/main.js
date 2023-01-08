@@ -212,8 +212,6 @@ eql.addEventListener('click', function(){
     if(isCalculating === 0 && isPercentage == true)
         ans = num1;
     let isFloat = 0;
-    console.log(ans);
-
     if(Number.isInteger(ans) == false)
         isFloat = ans.toString().split('.')[1].length;
     if(Number.isInteger(ans) == false && isFloat >= 4){
@@ -226,7 +224,6 @@ eql.addEventListener('click', function(){
                 break;
 
         }
-        console.log(zeros);
         res.innerText = ans.toFixed(4 - zeros);
     }
     else
@@ -237,7 +234,6 @@ eql.addEventListener('click', function(){
     isCalculating = 0;
     isPercentage = false;
 });
-
 
 // math operation buttons
 mult.addEventListener('click', function(){
@@ -318,17 +314,3 @@ function isLastOperation(){
     }
 }
 
-// function num1Editing(s){
-//     let lastChar = s.substring(s.length - 1, s.length);
-//     if(lastChar == '+' || lastChar == '*' || lastChar == ' /' || lastChar == '-'){
-//         num1 = s.substring(0, num1.length - 1);    
-//     }
-// }
-
-
-
-// function checkPhoneKey(key) {
-//     return (key >= '0' && key <= '9') || key == '+' || key == '(' || key == ')' || key == '-';
-//   }
-
-//   res.innerText += return checkPhoneKey(event.key)
