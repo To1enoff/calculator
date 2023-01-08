@@ -204,18 +204,31 @@ eql.addEventListener('click', function(){
         case 4:
             ans = num1 - parseFloat(num2);
         case 5:
-            ans = Math.sqrt(parseInt(num2));
+            ans = Math.sqrt(parseFloat(num2));
         default:
             break;
     }
+    
     if(isCalculating === 0 && isPercentage == true)
         ans = num1;
     let isFloat = 0;
+    console.log(ans);
+
     if(Number.isInteger(ans) == false)
         isFloat = ans.toString().split('.')[1].length;
-    if(Number.isInteger(ans) == false && isFloat >= 4)
-
+    if(Number.isInteger(ans) == false && isFloat >= 4){
         res.innerText = ans.toFixed(4);
+        let zeros = 0;
+        for(let i = res.innerText.length - 1;i>0;i--){
+            if(res.innerText[i] == 0)
+                zeros++;
+            else
+                break;
+
+        }
+        console.log(zeros);
+        res.innerText = ans.toFixed(4 - zeros);
+    }
     else
         res.innerText = ans;
     ans = 0;
@@ -291,7 +304,10 @@ sqrt.addEventListener('click',function(){
 
 percentage.addEventListener('click', function(){
     isPercentage = true;
-    num1 = res.innerText / 100;
+    if(isCalculating != 0)
+        num2 = num2 / 100;
+    else
+        num1 = res.innerText / 100;
     res.innerText += '%';
 });
 
